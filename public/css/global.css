@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+/* Default scrollbar style */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 12px;
+}
+
+/* Style for the scrollbar track */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+/* Style for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background-color: #d8d8d8;
+    border-radius: 10px;
+    transition: width 0.2s ease; /* Smooth transition on hover */
+}
+
+@theme {
+    --color-primary: #e31f26;
+    --color-dark-blue: #20252b;
+    --color-titanium: #b2ac9e;
+    --color-light-gray: #e4e4e4;
+    --color-light-grey-alt: #f3f3f3;
+    --color-gray: #cbcac8;
+
+    /* breakpoint */
+    --breakpoint-xs: 90%;
+    --breakpoint-sm: 30rem;
+    --breakpoint-md: 50rem;
+    --breakpoint-lg: 70rem;
+    --breakpoint-xl: 90rem;
+
+    --animate-header: header 0.5s ease-in-out;
+    @keyframes header {
+        0% {
+            transform: translateY(-100%);
+        }
+        100% {
+            transform: translateY(0px);
+        }
+    }
+}
+
+@utility container {
+    padding-inline: 1rem;
+    margin-inline: auto;
+
+    @variant md {
+        @apply max-w-[var(--breakpoint-md)];
+    }
+
+    @variant lg {
+        @apply max-w-[var(--breakpoint-lg)];
+    }
+
+    @variant xl {
+        @apply max-w-[var(--breakpoint-xl)];
+    }
+}
+
+button {
+    @apply cursor-pointer;
+}
+
+@layer components {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold;
+    }
+
+    .header-sticky {
+        @apply fixed inset-x-0 top-0 z-50 bg-white shadow-lg animate-header;
+    }
+
+    .primary-btn {
+        @apply uppercase font-bold text-primary flex items-center gap-3.5;
+    }
+
+    .secondary-btn {
+        @apply uppercase font-bold text-dark-blue flex items-center gap-3.5;
+    }
+
+    /* tab start */
+    .tab {
+        @apply font-medium text-dark-blue hover:text-white h-[65px] hover:bg-primary w-full rounded-[10px] flex items-center justify-between hover:px-5 transition-all duration-300 text-start;
+    }
+
+    .tab.tab-active {
+        @apply bg-primary text-white px-5;
+    }
+
+    .tab img {
+        @apply invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300;
+    }
+
+    .tab.tab-active img {
+        @apply visible opacity-100;
+    }
+    /* tab end */
+}
+
+p {
+    @apply text-base leading-[1.2];
+}
